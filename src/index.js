@@ -9,6 +9,8 @@ const lastNameInput = document.getElementById("user-last-name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("user-password");
 
+nameInput.checkCustomValidity = () => {};
+
 const passwordRequirementsModal = document.querySelector(
   "#password-requirements-modal"
 );
@@ -86,15 +88,17 @@ inputFields.forEach((input) => {
 
 function setInputEmptyState() {
   const isEmpty = checkEmptyInput(this);
-  isEmpty ? (this.dataset.empty = true) : (this.dataset.empty = false);
+  isEmpty
+    ? (this.dataset.empty = true)
+    : setTimeout(() => {
+        const isEmpty = checkEmptyInput(this);
+        if (isEmpty === false) this.dataset.empty = false;
+      }, 500);
 }
 
 function reportValidityState() {
   const inputContainer = this.closest(".sign-up-field");
-  const validInput = this.checkValidity();
-  const inputErrorMSG = this.closest(".sign-up-field").querySelector(
-    ".sign-up-input-error"
-  );
+  const validInput = this.checkCustomValidity();
 
   if (validInput) {
     inputContainer.dataset.valid = "valid";
@@ -109,6 +113,10 @@ function reportValidityState() {
 function reportValidityStateInRealTime() {
   if (this.validationBehavior !== "aggressive") return;
 
+  const inputErrorMSG = this.closest(".sign-up-field").querySelector(
+    ".sign-up-input-error"
+  );
+
   const validInput = this.checkValidity();
 
   if (validInput) {
@@ -117,39 +125,37 @@ function reportValidityStateInRealTime() {
   }
 }
 
-function reportFirstNameError() {
-  const inputErrorMSG = this.closest("sign-up-field").querySelector(
-    ".sign-up-input-error"
-  );
+function reportInputError(input, error) {
+  const inputErrorMSG = input
+    .closest("sign-up-field")
+    .querySelector(".sign-up-input-error");
 
+  if (input) inputErrorMSG.textContent = error;
+}
+
+function reportFirstNameError() {
   if (checkEmptyInput(this)) {
-    inputErrorMSG.textContent = "First Name cannot be empty.";
+    reportInputError(this, "First Name cannot be empty.");
   }
 }
 
 function reportLastNameError() {
-  const inputErrorMSG = this.closest("sign-up-field").querySelector(
-    ".sign-up-input-error"
-  );
-
   if (checkEmptyInput(this)) {
-    inputErrorMSG.textContent = "Last Name cannot be empty.";
+    reportInputError(this, "Last Name cannot be empty.");
   }
 }
 
 function reportEmailError() {
-  const inputErrorMSG = this.closest("sign-up-field").querySelector(
-    ".sign-up-input-error"
-  );
   const validEmailPattern =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   if (checkEmptyInput(this)) {
-    inputErrorMSG.textContent = "Email cannot be empty.";
+    reportInputError(this, "Email cannot be empty.");
+    return;
   }
 
   if (this.value.match(validEmailPattern) === false) {
-    inputErrorMSG.textContent = "Invalid email format";
+    reportInputError(this, "Invalid email format");
   }
 }
 
@@ -169,7 +175,7 @@ function reportPasswordError() {
   }
 }
 
-nameInput.addEventListener("invalid", reportFirstNameError, false);
-lastNameInput.addEventListener("invalid", reportLastNameError, false);
-emailInput.addEventListener("invalid", reportEmailError, false);
-passwordInput.addEventListener("invalid", reportPasswordError, false);
+nameInput.addEventListener("input", reportFirstNameError, false);
+lastNameInput.addEventListener("input", reportLastNameError, false);
+emailInput.addEventListener("input", reportEmailError, false);
+passwordInput.addEventListener("input", reportPasswordError, false);

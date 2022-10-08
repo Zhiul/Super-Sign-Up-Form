@@ -1,78 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Sign Up Form</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+    <title>Sign Up Form</title>
 
-  <script defer src="/dist/main.js"></script>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <script defer src="./dist/main.js"></script>
 
-  <div class="sign-up-form-container">
-    <div class="sign-up-info">
-      <h1 id="sign-up-header">Learn to code by watching others</h1>
-      <p id="sign-up-description">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
-        but understanding how developers think is invaluable.</p>
-    </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="sign-up-form-container">
+      <div class="sign-up-info">
+        <h1 id="sign-up-header">Learn to code by watching others</h1>
+        <p id="sign-up-description">
+          See how experienced developers solve problems in real-time. Watching
+          scripted tutorials is great, but understanding how developers think is
+          invaluable.
+        </p>
+      </div>
 
-    <div class="sign-up-form-wrapper">
-      <button id="free-trial-button"><span>Try it free 7 days</span> then $20/mo. thereafter</button>
+      <div class="sign-up-form-wrapper">
+        <button id="free-trial-button">
+          <span>Try it free 7 days</span> then $20/mo. thereafter
+        </button>
 
-      <form id="sign-up-form" novalidate>
-        <div class="sign-up-field">
-          <input class="sign-up-input" type="text" name="user-name" id="user-name" autocomplete="off" maxlength="50" required>
-          <label class="sign-up-input-label" for="user-name">First Name</label>
-          <div class="sign-up-input-error"></div>
-        </div>
-    
-        <div class="sign-up-field">
-          <input class="sign-up-input" type="text" name="user-last-name" id="user-last-name" autocomplete="off" maxlength="50" required>
-          <label class="sign-up-input-label" for="user-last-name">Last Name</label>
-          <div class="sign-up-input-error"></div>
-        </div>
-    
-        <div class="sign-up-field">
-          <input class="sign-up-input" type="email" name="email" id="email" autocomplete="off" maxlength="254" required>
-          <label class="sign-up-input-label" for="email">Email Address</label>
-          <div class="sign-up-input-error"></div>
-        </div>
-    
-        <div class="sign-up-field">
-          <input class="sign-up-input" type="password" name="user-password" id="user-password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
-          " autocomplete="off" required>
-          <label class="sign-up-input-label" for="user-password">Password</label>
-          <div class="sign-up-input-error"></div>
-          <div id="password-requirements-modal">
-            <ul>
-              <li class="password-requirement" id="password-length-validity">At least 8 characters</li>
-              <li class="password-requirement" id="lowercase-validity">One lowercase character</li>
-              <li class="password-requirement" id="uppercase-validity">One uppercase character</li>
-              <li class="password-requirement" id="number-validity">One number</li>
-              <li class="password-requirement" id="special-character-validity">One special character</li>
-            </ul>
-            <div class="arrow-right"></div>
+        <form id="sign-up-form" novalidate>
+          <div class="sign-up-field">
+            <input
+              class="sign-up-input"
+              type="text"
+              name="user-name"
+              id="user-name"
+              autocomplete="off"
+              maxlength="50"
+              required
+            />
+            <label class="sign-up-input-label" for="user-name"
+              >First Name</label
+            >
+            <div class="sign-up-input-error"></div>
+            <span class="sign-up-field-error"></span>
           </div>
-        </div>
-     
-        <button id="sign-up-cta">CLAIM YOUR FREE TRAIL</button>
-        <p id="sign-up-terms-info">By clicking the button, you are agreeing to our <a href="#">Terms and Services</a></p>
-      </form>
+
+          <div class="sign-up-field">
+            <input
+              class="sign-up-input"
+              type="text"
+              name="user-last-name"
+              id="user-last-name"
+              autocomplete="off"
+              maxlength="50"
+              required
+            />
+            <label class="sign-up-input-label" for="user-last-name"
+              >Last Name</label
+            >
+            <div class="sign-up-input-error"></div>
+            <span class="sign-up-field-error"></span>
+          </div>
+
+          <div class="sign-up-field">
+            <input
+              class="sign-up-input"
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="off"
+              maxlength="254"
+              required
+            />
+            <label class="sign-up-input-label" for="email">Email Address</label>
+            <div class="sign-up-input-error"></div>
+            <span class="sign-up-field-error"></span>
+          </div>
+
+          <div class="sign-up-field">
+            <input
+              class="sign-up-input"
+              type="password"
+              name="user-password"
+              id="user-password"
+              pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+          "
+              autocomplete="off"
+              required
+            />
+            <label class="sign-up-input-label" for="user-password"
+              >Password</label
+            >
+            <div id="password-requirements-modal">
+              <ul>
+                <li class="password-requirement" id="password-length-validity">
+                  At least 8 characters
+                </li>
+                <li class="password-requirement" id="lowercase-validity">
+                  One lowercase character
+                </li>
+                <li class="password-requirement" id="uppercase-validity">
+                  One uppercase character
+                </li>
+                <li class="password-requirement" id="number-validity">
+                  One number
+                </li>
+                <li
+                  class="password-requirement"
+                  id="special-character-validity"
+                >
+                  One special character
+                </li>
+              </ul>
+              <div class="arrow-right"></div>
+            </div>
+            <div class="sign-up-input-error"></div>
+            <span class="sign-up-field-error"></span>
+          </div>
+
+          <button id="sign-up-cta">CLAIM YOUR FREE TRAIL</button>
+          <p id="sign-up-terms-info">
+            By clicking the button, you are agreeing to our
+            <a href="#">Terms and Services</a>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
